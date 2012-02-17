@@ -34,12 +34,28 @@ module Histomatic
       @bins   = bins
     end
 
+    # Return hash representation.
+    #
+    # @return [Hash]
+    #
+    def to_hash
+      serializable_hash
+    end
+
+    # Return json representation.
+    #
+    # @return [String]
+    #
+    def to_json
+      JSON.generate(to_hash)
+    end
+
     # Return the result as a keys representing the lower inclusive bound
     # of bin, with values pointing to the number of objects represented.
     #
     # @return [Hash]
     #
-    def to_hash
+    def serializable_hash 
       results.each.inject(empty_bins) do |histogram, result|
         histogram[result] = histogram[result] ? histogram[result] + 1 : 1; histogram
       end
