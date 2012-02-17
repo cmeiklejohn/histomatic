@@ -86,6 +86,7 @@ module Histomatic
     #
     # @return  [String]
     # @private 
+    # @todo    Inefficient, however, compatible for clients that do not support subselects.
     #
     def bin_sql
       selection = [
